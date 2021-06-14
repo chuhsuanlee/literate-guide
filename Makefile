@@ -11,7 +11,7 @@ APP_ENV ?= dev
 WORKDIR := $(shell pwd)
 FLAG := \
 	-v /etc/localtime:/etc/localtime \
-	-v $(WORKDIR)/sources:/usr/src/sources
+	-v $(WORKDIR)/temp:/usr/src/sources
 
 
 .PHONY: help
@@ -66,4 +66,4 @@ publish: build
 ci_master: publish
 
 .PHONY: ci_deploy
-ci_deploy: kubectl apply -f "http://kubernetes-manifest-repos/$(PROJECT_NAME)?env=$(APP_ENV)"
+ci_deploy: kubectl apply -f "kubernetes.manifest.yml.repos.url/$(PROJECT_NAME)?env=$(APP_ENV)"
