@@ -1,0 +1,26 @@
+.meta:
+  name: literate-guide
+
+stage:
+  - master
+  - staging
+  - prod
+
+# ci.yaml needs one "master" job which is the entrypoint for the pipeline
+master:
+  stage: masater
+  script: make ci_master
+
+deploy_qa:
+  stage: staging
+  environment:
+    name: qa
+  script: make ci_deploy
+
+deploy_prod:
+  stage: prod
+  # deploying to prod is a manual step, after making sure everything works fine in qa environment
+  when: manual
+  environment:
+    name: prod
+  script: make ci_deploy

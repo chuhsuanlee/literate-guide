@@ -1,16 +1,18 @@
 DOCKER := docker
 
-IMAGE_NAME := literate-guide
+PROJECT_NAME := literate-guide
 IMAGE_NAMESPACE := chuhsuanlee
 IMAGE_VERSION := 0.1.0
-IMAGE_REPO := $(IMAGE_NAMESPACE)/$(IMAGE_NAME):$(IMAGE_VERSION)
+IMAGE_REPO := $(IMAGE_NAMESPACE)/$(PROJECT_NAME):$(IMAGE_VERSION)
+
+# APP_ENV is fetched from CI server depending on the environment
+APP_ENV ?= dev
 
 WORKDIR := $(shell pwd)
 FLAG := \
 	-v /etc/localtime:/etc/localtime \
 	-v $(WORKDIR)/sources:/usr/src/sources
 
-# Followings are the Make commands that can be used.
 
 .PHONY: help
 help:
@@ -55,3 +57,13 @@ run: build
 	$(DOCKER) run \
 		--rm ${FLAG} \
 		$(IMAGE_REPO)
+
+.PHONY: publish
+publish: build
+	$(DOCKER) push $(IMAGE_REPO)
+
+.PHONY: ci_master
+ci_master: publish
+
+.PHONY: ci_deploy
+ci_deploy: kubectl apply -f "http://kubernetes-manifest-repos/$(PROJECT_NAME)?env=$(APP_ENV)"
