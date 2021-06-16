@@ -66,4 +66,4 @@ publish: build
 ci_master: publish
 
 .PHONY: ci_deploy
-ci_deploy: kubectl apply -f "kubernetes.manifest.yml.repos.url/$(PROJECT_NAME)?env=$(APP_ENV)"
+ci_deploy: kubectl apply -f "$(KUBERNETES_MANIFEST_YAML_REPO_URL)/$(PROJECT_NAME)?env=$(APP_ENV)"

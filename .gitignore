@@ -130,3 +130,5 @@ dmypy.json
 
 # test sources
 sample_data.json
+
+.vscode
