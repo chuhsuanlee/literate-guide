@@ -15,6 +15,17 @@ class Event(Base):
     processing_date = Column(Date, nullable=False)
 
 
+class EventStage(Base):
+    __tablename__ = 'event_stage'
+
+    uuid = Column(String(32), primary_key=True)
+    event_type = Column(Integer, nullable=False)
+    event_time = Column(DateTime, nullable=False)
+    user_email = Column(String(32))
+    phone_number = Column(String(32))
+    processing_date = Column(Date, nullable=False)
+
+
 json_schema = {
     "type": "object",
     "properties": {
