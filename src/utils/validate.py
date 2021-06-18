@@ -17,3 +17,19 @@ def validate_json(line: str):
         return False, err
 
     return True, json_data
+
+
+# Future works
+
+def modifications(json_schema, schema_in_repo):
+    """
+    Checks whether a schema already existed in repo, and if it does it verifies that they are identical
+    """
+    return True
+
+
+def backwards_compatible(json_schema, schema_in_repo):
+    """
+    Checks whether the changes between the predecessor of the schema and the current version are backwards compatible
+    """
+    return True

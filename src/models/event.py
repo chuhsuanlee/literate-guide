@@ -7,7 +7,7 @@ Base = declarative_base()
 class Event(Base):
     __tablename__ = 'event'
 
-    uuid = Column(String(32), primary_key=True)
+    uuid = Column(String(36), primary_key=True)
     event_type = Column(Integer, nullable=False)
     event_time = Column(DateTime, nullable=False)
     user_email = Column(String(32))
@@ -18,7 +18,7 @@ class Event(Base):
 class EventStage(Base):
     __tablename__ = 'event_stage'
 
-    uuid = Column(String(32), primary_key=True)
+    uuid = Column(String(36), primary_key=True)
     event_type = Column(Integer, nullable=False)
     event_time = Column(DateTime, nullable=False)
     user_email = Column(String(32))
@@ -27,6 +27,7 @@ class EventStage(Base):
 
 
 json_schema = {
+    "title": "event",
     "type": "object",
     "properties": {
         "event_type": {
