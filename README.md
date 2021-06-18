@@ -29,7 +29,7 @@ Some future works regarding to schema change/evolution:
 
 Load each record to a stage table as we can process some quality checks before loading to final table.
 
-In order to load the sample data into Postgres/MySQL database, the data structure is flattented and each subfield inside `data` field becomes a column of the table. Since I'm not familiar with event-driven architecture, I might disregard the best practice to load such data into such database.
+In order to load the sample data into Postgres/MySQL database, the data structure is flattened and each subfield inside `data` field becomes a column of the table. Since I'm not familiar with event-driven architecture, I might disregard the best practice to load such data into such database.
 
 Insert the data of stage table into final table after checking the quality is as expected.
 
